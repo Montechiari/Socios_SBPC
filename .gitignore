@@ -130,3 +130,5 @@ dmypy.json
 
 dados_de_socios.csv
 socios.db
+processa_csv.py
+socios.csv

@@ -4,7 +4,7 @@ import pandas as pd
 
 ENDERECO = "./"
 NOME_BANCO = "socios.db"
-ARQUIVO_DADOS_CSV = "dados_de_socios.csv"
+ARQUIVO_DADOS_CSV = "socios.csv"
 
 
 class Socio():
