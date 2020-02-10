@@ -24,7 +24,12 @@ def gera_banco_de_dados():
     return banco_de_dados
 
 
-if __name__ == '__main__':
+def faz_recorte(conexao, consulta):
+    data_frame = pd.read_sql_query(consulta, conexao, index_col="nome")
+    return data_frame.drop(columns="index")
+
+
+def inicializar():
     try:
         arquivo = ENDERECO + NOME_BANCO
         conexao = sqlite3.connect(f"file:{arquivo}?mode=rw", uri=True)
@@ -32,9 +37,11 @@ if __name__ == '__main__':
         conexao = gera_banco_de_dados()
     except Exception as e:
         print(e)
+    return conexao
 
-    meu_cursor = conexao.cursor()
-    meu_cursor.execute("SELECT * FROM socios WHERE anuidade > 2018")
 
-    for entrada in meu_cursor.fetchall():
-        print(entrada)
+if __name__ == '__main__':
+
+    conexao = inicializar()
+    print(faz_recorte(conexao,
+                      "SELECT * FROM socios WHERE anuidade > 2018"))
