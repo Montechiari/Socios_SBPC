@@ -26,6 +26,7 @@ def gera_banco_de_dados():
 
 def faz_recorte(conexao, consulta):
     data_frame = pd.read_sql_query(consulta, conexao, index_col="nome")
+    data_frame.drop_duplicates(inplace=True)
     return data_frame.drop(columns="index")
 
 
